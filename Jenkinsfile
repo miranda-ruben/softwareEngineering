@@ -15,13 +15,14 @@ pipeline {
             }
         }
 
-        stage('Maven Build & Test') {
-            steps {
-                echo 'Starting Maven build...'
-                sh 'mvn clean compile'
-                sh 'mvn test'
-            }
+        stage('Maven Build') {
+    steps {
+        withMaven(maven: 'Maven-3.9.3') {
+            sh 'mvn clean compile'
         }
+    }
+}
+
 
         stage('Gradle Build & Test') {
             steps {
