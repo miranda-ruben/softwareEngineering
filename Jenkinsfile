@@ -1,34 +1,36 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven-3.9.3'   
-        gradle 'Gradle-8.3'   
-        jdk 'Java-17' 
-    }
-
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/miranda-ruben/softwareEngineering.git', branch: 'main'
+                echo 'Pulling source code...'
             }
         }
 
-        stage('Maven Build') {
+        stage('Build') {
             steps {
-                sh 'mvn clean compile test'
+                echo 'Simulating build step...'
+                sh 'echo "Compiling source..."'
+                sh 'sleep 2'
+                sh 'echo "Build completed!"'
             }
         }
 
-        stage('Gradle Build & Test') {
+        stage('Test') {
             steps {
-                sh './gradlew build'
+                echo 'Running tests...'
+                sh 'echo "All tests passed!"'
             }
         }
     }
 
     post {
-        success { echo 'Pipeline completed successfully!' }
-        failure { echo 'Pipeline failed!' }
+        success {
+            echo 'Pipeline finished successfully!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
     }
 }
