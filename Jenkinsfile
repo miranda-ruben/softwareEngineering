@@ -12,7 +12,7 @@ stages {
 
     stage('Maven Build') {
         agent {
-            docker { image 'maven:3.9.3-openjdk-17' } // Maven + JDK 17
+            docker { image 'maven:3.9.3-openjdk-17' }
         }
         steps {
             echo 'Running Maven build...'
@@ -22,7 +22,7 @@ stages {
 
     stage('Gradle Build & Test') {
         agent {
-            docker { image 'gradle:8.3-jdk17' } 
+            docker { image 'gradle:8.3-jdk17' }
         }
         steps {
             echo 'Running Gradle build...'
@@ -39,6 +39,6 @@ post {
         echo 'Pipeline failed!'
     }
 }
-```
+
 
 }
